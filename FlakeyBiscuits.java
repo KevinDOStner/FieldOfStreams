@@ -13,9 +13,6 @@ import java.io.*;
  */
 public class FlakeyBiscuits {
 
-    private static Object sherlock;
-    private static int moriarty;
-
  
     public static void main(String[] args) throws FileNotFoundException, IOException{
         
@@ -37,15 +34,13 @@ public class FlakeyBiscuits {
 //  while((br2.readLine()) != null && (br3.readLine()) !=null) {
  String line;
      while (!match && ((line = br2.readLine()) != null)) {
-      sherlock = br2.read();
-     // moriarty = br3.read();
+             char garfield = (char) br2.read();
+             char odie = (char) br3.read();
       
-      System.out.println("Data1:"+ (sherlock));
-      System.out.println("Data2:           "+ (moriarty));
+      System.out.println("Data1:"+ (garfield));
+      System.out.println("Data2:           "+ (odie));
      
            }
-   System.out.println(br2.markSupported());
-   System.out.println(br3.markSupported());
 
    }
     catch(Exception e){
