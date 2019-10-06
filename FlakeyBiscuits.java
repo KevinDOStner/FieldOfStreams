@@ -26,30 +26,32 @@ public class FlakeyBiscuits {
         InputStreamSplitter is3 = is.split();
         BufferedReader br2 = new BufferedReader(new InputStreamReader(is2));
         BufferedReader br3 = new BufferedReader(new InputStreamReader(is3));
-        
+        boolean match = false;
 
 
    try{
          int x = 0;
+      
+      
+      
+//  while((br2.readLine()) != null && (br3.readLine()) !=null) {
+ String line;
+     while (!match && ((line = br2.readLine()) != null)) {
       sherlock = br2.read();
-      moriarty = br3.read();
-       int line = 0;
-
+     // moriarty = br3.read();
       
-      
-  while((br2.readLine()) != null) {
-      
-      line = br2.read();
-      System.out.println("Data: "+ sherlock);
-        
+      System.out.println("Data1:"+ (sherlock));
+      System.out.println("Data2:           "+ (moriarty));
+     
            }
-  br2.close();
-  br3.close();
+   System.out.println(br2.markSupported());
+   System.out.println(br3.markSupported());
 
    }
     catch(Exception e){
         
         System.out.println("Fail");
+        System.out.println(e);
     }
     
     
