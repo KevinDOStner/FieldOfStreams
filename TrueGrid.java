@@ -113,13 +113,6 @@ public final class TrueGrid extends JFrame {
 
    }
  public boolean isDraw() {
-      /*for (int row = 0; row < ROWS; ++row) {
-         for (int col = 0; col < COLS; ++col) {
-            if (board[row][col] == Token.VIDE) {
-               return false; 
-            }
-         }
-      }*/
       return false; 
    }
 
