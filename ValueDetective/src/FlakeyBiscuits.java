@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package FlakeyBiscuits;
 
 import java.io.*;
@@ -33,7 +28,7 @@ public class FlakeyBiscuits {
       
 //  while((br2.readLine()) != null && (br3.readLine()) !=null) {
  String line;
-     while (!match && ((line = br2.readLine()) != null)) {
+     while (!match && (is.read() != -1)) {
              char garfield = (char) br2.read();
              char odie = (char) br3.read();
       
