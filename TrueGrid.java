@@ -5,10 +5,11 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 
+
 public final class TrueGrid extends JFrame {
 
-    public static int ROWS = 100;
-    public static int COLS = 100;
+    public static int ROWS = 75;
+    public static int COLS = 75;
 
 
     public static int cellSize = 15; 
@@ -20,6 +21,7 @@ public final class TrueGrid extends JFrame {
     public static int cellPadding = cellSize / 5;
     public static int symbolSize = cellSize - cellPadding * 2; 
     public static int symbolStrokeWidth = 3; 
+    private boolean ColumnPals;
 
     public enum GameState{
         ACTIVE, DRAW, RED_CIRCLE_WINS, BLUE_CIRCLE_WINS
@@ -36,6 +38,7 @@ public final class TrueGrid extends JFrame {
     private Token[][] board;
     private final DrawCanvas canvas; 
     private JLabel statusBar; 
+   
 
     public TrueGrid(){
 
@@ -62,7 +65,7 @@ public final class TrueGrid extends JFrame {
                 updateGame(actualPlayer, selectedRow, selectedCol); 
                 actualPlayer = (actualPlayer == Token.BLUE_CIRCLE)? Token.RED_CIRCLE : Token.BLUE_CIRCLE;
 
-                neighbours(selectedRow, selectedCol);
+                neighbors(selectedRow, selectedCol);
             }
         } else { 
             initGame(); 
@@ -126,23 +129,35 @@ public final class TrueGrid extends JFrame {
 }
 
 
-   public void neighbours(int  row, int col) {
-
-    for (int colNum = col - 1 ; colNum <= (col + 1) ; colNum +=1  ) {
-
-        for (int rowNum = row - 1 ; rowNum <= (row + 1) ; rowNum +=1  ) {
+   public void neighbors(int  row, int col) {
+           
+   System.out.println("10 Column members of "+ col + " " + row + " are: ");
+       
+   for (int rowNum = row - 1 ; rowNum <= (row + 1) ; rowNum +=1  ) {
+       
+        for (int colNum = col - 1 ; colNum <= (col + 0) ; colNum +=1){
 
             if(!((colNum == col) && (rowNum == row))) {
 
-                if(withinGrid (rowNum, colNum )) {
-
-                    System.out.println("Neighbor of "+ row + " " + col + " is " + rowNum +" " + colNum );
-
+                if(withinGrid (rowNum, colNum ) /*&& ColumnPals(colNum, rowNum,row, col))*/){
+                   
+                    
+                    if(colNum == col&& rowNum > row){
+                        
+                        
+                        for(int x = 0; x<10; x++){
+                            
+                        
+                        System.out.println("                     "+ colNum +" " + rowNum );
+                        rowNum++;
+                       
+                    }
                 }
             }
         }
     }
 }
+   }
 
 private boolean withinGrid(int colNum, int rowNum) {
 
@@ -197,32 +212,18 @@ class DrawCanvas extends JPanel{
                 }
 
             }
-
-            if(actualState == GameState.ACTIVE){
-                if(actualPlayer == Token.RED_CIRCLE){
-                    statusBar.setText("Red's turn");
-                    statusBar.setForeground(Color.RED);
-
-                } else {
-                    statusBar.setText("Blue's turn");
-                    statusBar.setForeground(Color.BLUE);
-                    statusBar.addMouseMotionListener(null);
-                }
-            } else
-                if(actualState == GameState.DRAW){
-                    statusBar.setForeground(Color.yellow);
-                    statusBar.setText("It's a Draw! Click to replay");
-                } else
-                    if(actualState == GameState.RED_CIRCLE_WINS){
-                        statusBar.setText("Red Won! Click to replay");
-                        statusBar.setForeground(Color.RED);
-                    } else
-                        if(actualState == GameState.BLUE_CIRCLE_WINS){
-                            statusBar.setForeground(Color.BLUE);
-                            statusBar.setText("Blue Won! Click to replay");
-                        }
         }
-    }
+       
+private boolean ColumnPals(int colNum, int rowNum, int row, int col){
+    
+    int rowplus = row+1;
+     if((colNum == col) && (rowplus == rowNum) ) {
+        return true;
+    }      
+   
+     return false;
+}
+}
 
     public static void main(String[] args){
         SwingUtilities.invokeLater(() -> {
